@@ -12,29 +12,29 @@ import java.util.List;
 
 @Service
 public class EmpPayrollService {
-  public EmpPayrollData get(long id){
-      EmpPayrollDTO empPayrollDTO = new EmpPayrollDTO("Sonu",8000);
-      EmpPayrollData empPayrollData = new EmpPayrollData(id,empPayrollDTO);
-      return empPayrollData;
+    private ArrayList<EmpPayrollData> dataList = new ArrayList<>();
 
-  }
-  public  EmpPayrollData create(EmpPayrollDTO empPayrollDTO){
-      EmpPayrollData empPayrollData = new EmpPayrollData(1,empPayrollDTO);
-      return empPayrollData;
-  }
-  public EmpPayrollData update(EmpPayrollDTO empPayrollDTO){
-      EmpPayrollData empPayrollData = new EmpPayrollData(1,empPayrollDTO);
-      return empPayrollData;
-  }
-public ArrayList<EmpPayrollData>  getAll(){
-    ArrayList<EmpPayrollData> empPayrollDataArrayList = new ArrayList<>();
-    EmpPayrollDTO empPayrollDTO = new EmpPayrollDTO("Teju",10000);
-    EmpPayrollData empPayrollData = new EmpPayrollData(1,empPayrollDTO);
-    empPayrollDataArrayList.add(empPayrollData);
-    return empPayrollDataArrayList;
-}
-public void delete(long id){
-    EmpPayrollDTO empPayrollDTO = new EmpPayrollDTO("Sonu",8000);
-    EmpPayrollData empPayrollData = new EmpPayrollData(id,empPayrollDTO);
-  }
+    public EmpPayrollData get(long id) {
+        EmpPayrollData empPayrollData = dataList.get((int)(id-1));
+        return empPayrollData;
+    }
+    public EmpPayrollData create(EmpPayrollDTO empPayrollDTO) {
+        EmpPayrollData empPayrollData = new EmpPayrollData(1, empPayrollDTO);
+        dataList.add(empPayrollData);
+        return empPayrollData;
+    }
+
+    public EmpPayrollData update(long id,EmpPayrollDTO empPayrollDTO) {
+        EmpPayrollData empPayrollData = dataList.get((int) (id-1));
+        empPayrollData.setName(empPayrollDTO.name);
+        empPayrollData.setSalary(empPayrollDTO.salary);
+        return empPayrollData;
+    }
+
+    public ArrayList<EmpPayrollData> getAll() {
+        return dataList;
+    }
+    public void delete(long id) {
+       dataList.remove((int)(id-1));
+    }
 }
