@@ -1,15 +1,20 @@
 package com.development.employeepayrollapp.dto;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import lombok.Data;
-
-@Data
 public class EmpPayrollDTO {
-    public static String name;
+
+    public String name;
     public long salary;
+
 
     public EmpPayrollDTO(String name, long salary) {
         this.name= name;
         this.salary = salary;
+    }
+    public EmpPayrollDTO() {
+
     }
 
     @Override
@@ -17,4 +22,6 @@ public class EmpPayrollDTO {
         return "name='" + name + '\'' +
                 ", salary=" + salary;
     }
+
 }
+
