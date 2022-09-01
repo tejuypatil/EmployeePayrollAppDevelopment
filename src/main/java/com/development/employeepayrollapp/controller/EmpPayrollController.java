@@ -3,6 +3,7 @@ package com.development.employeepayrollapp.controller;
 
 import com.development.employeepayrollapp.dto.EmpPayrollDTO;
 import com.development.employeepayrollapp.dto.ResponseDTO;
+import com.development.employeepayrollapp.exceptions.EmployeeePayrollException;
 import com.development.employeepayrollapp.model.EmpPayrollData;
 import com.development.employeepayrollapp.service.EmpPayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class EmpPayrollController {
     @RequestMapping("/payroll")
     public ResponseEntity getEmployeePayrollData() {
         ArrayList<EmpPayrollData> empPayrollDataArrayList = empPayrollService.getAll();
-        ResponseDTO responseDTO = new ResponseDTO("Get call success", empPayrollDataArrayList);
+        ResponseDTO responseDTO = new ResponseDTO("Get All call success", empPayrollDataArrayList);
         ResponseEntity<ResponseDTO> response = new ResponseEntity<>(responseDTO, HttpStatus.OK);
         return response;
     }
 
-    @GetMapping("/payroll/{empId}")
-    public ResponseEntity<ResponseDTO> getEmployeePayrollData(@PathVariable("empId") int empId) {
+    @GetMapping("/payroll/{id}")
+    public ResponseEntity<ResponseDTO> getEmployeePayrollData(@PathVariable("id") int id) throws EmployeeePayrollException {
         EmpPayrollData empPayrollData = empPayrollService.get(1);
         ResponseDTO responseDTO = new ResponseDTO("Get call success", empPayrollData);
         ResponseEntity<ResponseDTO> response = new ResponseEntity<>(responseDTO, HttpStatus.OK);
@@ -43,7 +44,7 @@ public class EmpPayrollController {
     }
 
     @PutMapping("/payroll/{id}")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("id") int id, @RequestBody EmpPayrollDTO empPayrollDTO) {
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("id") int id, @RequestBody EmpPayrollDTO empPayrollDTO) throws EmployeeePayrollException {
         EmpPayrollData empPayrollData = empPayrollService.update(id, empPayrollDTO);
         ResponseDTO responseDTO = new ResponseDTO("Get call success", empPayrollData);
         ResponseEntity<ResponseDTO> response = new ResponseEntity<>(responseDTO, HttpStatus.OK);
@@ -51,7 +52,7 @@ public class EmpPayrollController {
     }
 
     @DeleteMapping("/payroll/{id}")
-    public ResponseEntity<ResponseDTO> deleteEmployeePayrollData(@PathVariable("id") int id) {
+    public ResponseEntity<ResponseDTO> deleteEmployeePayrollData(@PathVariable("id") int id) throws EmployeeePayrollException {
         empPayrollService.delete(id);
         ResponseDTO responseDTO = new ResponseDTO("Deleted", null);
         ResponseEntity<ResponseDTO> response = new ResponseEntity<>(responseDTO, HttpStatus.OK);
