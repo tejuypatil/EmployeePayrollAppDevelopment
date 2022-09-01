@@ -33,7 +33,7 @@ public class EmpPayrollController {
     @PostMapping("/payroll")
     public  ResponseEntity<ResponseDTO>addEmployeePayrollData(@RequestBody EmpPayrollDTO empPayrollDTO) {
         EmpPayrollData empPayrollData= empPayrollService.create(empPayrollDTO);
-        ResponseDTO responseDTO = new ResponseDTO("Get call success",HttpStatus.OK);
+        ResponseDTO responseDTO = new ResponseDTO("Get call success",empPayrollData);
         ResponseEntity<ResponseDTO> response = new ResponseEntity<>(responseDTO,HttpStatus.OK);
         return response;
     }
