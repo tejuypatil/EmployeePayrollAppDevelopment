@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 
 @RestController
@@ -34,7 +35,7 @@ public class EmpPayrollController {
     }
 
     @PostMapping("/payroll")
-    public ResponseEntity<ResponseDTO> addEmployeePayrollData(@RequestBody EmpPayrollDTO empPayrollDTO) {
+    public ResponseEntity<ResponseDTO> addEmployeePayrollData(@Valid @RequestBody EmpPayrollDTO empPayrollDTO) {
         EmpPayrollData empPayrollData = empPayrollService.create(empPayrollDTO);
         ResponseDTO responseDTO = new ResponseDTO("Get call success", empPayrollData);
         ResponseEntity<ResponseDTO> response = new ResponseEntity<>(responseDTO, HttpStatus.OK);
