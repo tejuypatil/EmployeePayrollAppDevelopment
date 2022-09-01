@@ -1,15 +1,10 @@
 package com.development.employeepayrollapp.service;
 
 import com.development.employeepayrollapp.dto.EmpPayrollDTO;
-import com.development.employeepayrollapp.dto.ResponseDTO;
 import com.development.employeepayrollapp.model.EmpPayrollData;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class EmpPayrollService {
     private ArrayList<EmpPayrollData> dataList = new ArrayList<>();
@@ -32,6 +27,7 @@ public class EmpPayrollService {
     }
 
     public ArrayList<EmpPayrollData> getAll() {
+
         return dataList;
     }
     public void delete(long id) {

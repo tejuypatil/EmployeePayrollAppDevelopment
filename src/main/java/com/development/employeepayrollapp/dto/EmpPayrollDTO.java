@@ -1,10 +1,5 @@
 package com.development.employeepayrollapp.dto;
-import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-@Data
+;
 public class EmpPayrollDTO {
 
     public String name;
